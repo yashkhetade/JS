@@ -1,0 +1,19 @@
+ .container{
+
+    margin-left: 500px;
+    height: 400px;
+    width: 500px;
+align-items: center;
+text-align: center;
+background-color: rgb(167, 180, 111)
+ }
+
+ #head{
+    align-items: center;
+text-align: center;
+}
+
+button{
+height: 50px;
+width: 50px;
+}
