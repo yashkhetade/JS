@@ -1,0 +1,110 @@
+arch bhev of 
+
+keep clock//////////////////
+
+type memory_type is array (0 to 7) of std_logic_vector(3 down to 0);
+
+signal memory:memory_type;
+
+signal writeptr,readptr:std_logic_vector(3down to 0):="0000";
+
+begin 
+
+process(clk)
+
+begin 
+
+if (clk='1' and clc'event and enw='1' and enr='0') then
+memory (conv_integer(writeptr))<=datain;
+writeptr<=writeptr+'1';
+
+end if;
+
+if (clk='1' and clc'event and enw='0' and enr='1') then
+dataout<=memory (conv_integer(readptr));
+readptr<=readptr+'1';
+
+end if;
+
+
+
+if (readptr ="1000")then 
+empty <='1';
+
+else 
+empty <='0';
+
+end if;
+
+if (writeptr ="1000")then 
+full <='1';
+
+else 
+full <='0';
+
+end if;
+
+
+end process
+
+check syntax
+syntheis;
+
+view rtl schematic
+add
+
+view schematic
+
+testbench file-
+
+inside begin make
+clk=1;
+clk=0;
+
+
+enw<='1';
+enr<='0';
+datain<='0001';
+wait for 10 ns;
+
+
+datain<='0010';
+wait for 10 ns;
+
+
+datain<='0100';
+wait for 10 ns;
+
+datain<='1000';
+wait for 10 ns;
+
+datain<='0011';
+wait for 10 ns;
+
+datain<='0111';
+wait for 10 ns;
+
+datain<='1111';
+wait for 10 ns;
+
+datain<='0000';
+wait for 10 ns;
+
+enw<="0";
+
+enr<="1";
+
+wait for 80 ns; 
+
+
+remove wait condition 
+
+
+zoom full
+when enw i.e w=1 we are writing the data
+
+
+
+
+
+
