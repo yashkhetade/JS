@@ -1,3 +1,6 @@
+
+https://tntinfohub.blogspot.com/2023/11/jobs-in-core.html?m=0
+
 ALU_TEST
 alu_4bit
 a,b,sin, op
