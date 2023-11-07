@@ -72,7 +72,7 @@ alu _ucf
 
 edit constraints niche
 
-
+NET "<0>" LOC= "P11";
 NET "a<1>" LOC="L3";
 NET "a<2>" LOC="K3";
 NET "a<3>" LOC="B4";
