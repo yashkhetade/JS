@@ -1,4 +1,12 @@
+clk,rst,enr,enw- in
+datain -in -bus, 3,0
+dataout -out- bus -3,0
+full ,empty out 
+
+
 arch bhev of 
+
+
 
 keep clock//////////////////
 
