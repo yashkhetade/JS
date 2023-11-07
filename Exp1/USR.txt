@@ -1,0 +1,53 @@
+new project spratan 3E
+xccs400
+
+din -in -3,0 bus 
+mod1-in- bus,1,0
+clk-in 
+rst-in
+dout 3,0,bus
+
+arith,unsigned ,numeric
+
+
+signal msbin,lsbin :std_logic;
+signal temp :std_logic_vector(3 down to 0);
+
+begin 
+msbin <=din(3);
+lsbin <=din(0);
+
+process(clk,rst)
+
+begin
+
+if(rst='1') then
+dout<="0000";
+temp<="0000";
+
+else if(clk'event and clk='1') then
+
+case mode1 is
+
+when "00"=>
+
+dout<=msbin & dout(3 down to 1);  --siso (rt shift)
+
+when "01"=>   --pipo
+
+dout<=din;
+
+
+when "10"=> --sipo
+
+temp<=msbin &temp(3 down to 1);
+dout<=temp;
+
+when "11"=>  --siso (left shift)
+dout<= dout(2 down to 0) & lsbin;
+
+
+when others=>
+dout<='0000';
+
+end case;
