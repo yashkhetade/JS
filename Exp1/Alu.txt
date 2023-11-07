@@ -1,0 +1,109 @@
+ALU_TEST
+alu_4bit
+a,b,sin, op
+3 down to 0
+2 downt to  0
+
+   process (a,b,sel)
+    begin 
+    case sel is
+    when "000"=> op<=a+b;
+     when "001"=> op<=a-b;
+	 when "010"=> op<=a-1;
+	  when "011"=> op<=b-1;
+	   when "100"=> op<=a and b;
+	    when "101"=> op<=a or b;
+	     when "110"=> op<=a nand b;
+		 when "111"=> op<=not a;
+
+    when others=>null;
+    end case;
+    end process;
+
+synthesis add
+view schematic
+
+
+testbench-
+
+comment clock
+
+a<="1000"
+b<="0001"
+sel<="000"
+
+wait for 10 ns;
+
+sel<="001"
+wait for 10 ns;
+
+sel<="010"
+wait for 10 ns;
+
+sel<="011"
+wait for 10 ns;
+
+sel<="100 "
+wait for 10 ns;
+
+sel<="101 "
+wait for 10 ns;
+
+sel<="110 "
+wait for 10 ns;
+
+remove last wait
+save file
+simuln-bheavcheck syntax-
+
+simulate behav model
+
+zoom to full view
+zoom it drag it
+
+fro  0 to 10ns sel line is 0
+a is 8 b is 1 so addn is 9
+
+implementation-
+right c
+new source
+imple con file
+alu _ucf
+
+edit constraints niche
+
+
+NET "a<1>" LOC="L3";
+NET "a<2>" LOC="K3";
+NET "a<3>" LOC="B4";
+
+
+NET "b<0>" LOC="G3";
+NET "b<1>" LOC="F3";
+NET "b<2>" LOC="E2";
+NET "b<3>" LOC="N3";
+
+
+NET "sel<0>" LOC="G12";
+NET "sel<1>" LOC="C11";
+NET "sel<2>" LOC="M4";
+
+
+NET "op<0>" LOC="N5";
+NET "op<1>" LOC="N4";
+NET "op<2>" LOC="P4";
+NET "op<3>" LOC="G1";
+
+select alu4bit file
+implement design
+run
+gen prgram file
+
+
+triangle- digilent
+baysys2
+250E
+browse
+alu4bit bit fie
+program okay
+
